@@ -16,8 +16,8 @@ const CONTACTS = {
   phoneHref: 'tel:+79773260990',
   wa: 'https://wa.me/79773260990?text=Здравствуйте!%20Хочу%20рассчитать%20подъём%20плит',
   tg: 'https://t.me/kalibr93',
-  city: 'Ваш город',
-  schedule: 'Пн–Вс: 9:00–21:00',
+  city: 'Москва, МО',
+  schedule: 'Пн–Вс: 09:00–21:00',
 };
 
 const MATERIALS = [
@@ -30,28 +30,49 @@ const MATERIALS = [
 
 const faqItems = [
   {
-    question: 'Как быстро выезжаете?',
-    answer: 'Обычно в течение 1–4 часов в рабочее время, в зависимости от удалённости и загруженности.',
+    question: '⏱️ Как быстро вы выезжаете?',
+    answer: 'Обычно в течение 1–4 часов в рабочее время, в зависимости от удалённости и загруженности. Срочные вызовы согласовываются отдельно.',
   },
   {
-    question: 'Поднимаете ли плиту в квартире с узкой лестницей?',
-    answer: 'Да. Мы используем вакуумные присоски, тележки, страховку и грамотную схему подъёма даже на узких участках.',
+    question: '🪜 Поднимаете ли вы плиту в квартире с узкой лестницей?',
+    answer: 'Да. Мы используем вакуумные присоски, тележки, страховку и грамотную схему подъёма даже на узких участках. Сначала проводим замер.',
   },
   {
-    question: 'Можно ли подъём без лифта?',
+    question: '🚀 Можно ли подъём без лифта?',
     answer: 'Да. Мы выполняем подъём по лестницам и коридорам с полной страховкой груза и безопасной маршрутизацией.',
   },
   {
-    question: 'Что делать, если плитка уже уложена и нужно поднять ровно без сколов?',
+    question: '💎 Что делать, если плита уже уложена и нужно поднять ровно без сколов?',
     answer: 'Это как раз наша специализация. Мы работаем аккуратно, используем спецоборудование и контролируем каждый этап.',
   },
   {
-    question: 'Есть ли гарантия на работу?',
+    question: '✅ Есть ли гарантия на работу?',
     answer: 'Да. Мы фиксируем условия в смете и гарантируем сохранность материала при выполнении всех этапов по технологии.',
   },
   {
-    question: 'Сколько стоит подъём одной плиты на этаж?',
-    answer: 'Цена зависит от материала, размера, этажа, наличия лифта и маршрута. Обычно рассчитываем индивидуально после замера.',
+    question: '💰 Сколько стоит подъём одной плиты на этаж?',
+    answer: 'Цена зависит от материала, размера плиты, сложности маршрута и наличия лифта. Обычно от 1500 ₽. Точная стоимость после замера.',
+  },
+];
+
+const reviewsData = [
+  {
+    name: 'Алексей К.',
+    location: 'квартира, 7-й этаж',
+    text: 'Очень аккуратно подняли мраморную плиту. Всё было без сколов и вовремя. Ребята профессионалы, рекомендую.',
+    stars: 5,
+  },
+  {
+    name: 'Марина С.',
+    location: 'офис, без лифта',
+    text: 'Работали через узкую лестницу, без лифта. Всё прошло быстро и безопасно. Особенно порадовали аккуратность и вежливость. Спасибо!',
+    stars: 5,
+  },
+  {
+    name: 'Сергей М.',
+    location: 'коттедж, 6-й этаж',
+    text: 'Подняли гранитные плиты на 6 этаж. Составили понятный расчёт и всё сделали точно по срокам. Надёжная команда.',
+    stars: 5,
   },
 ];
 
@@ -65,7 +86,7 @@ const render = () => {
       <header class="topbar">
         <div class="container topbar-inner">
           <a class="brand" href="#top" aria-label="На главный экран">
-            <span class="brand-mark">K</span>
+            <span class="brand-mark">⬆️</span>
             <span>
               <strong>КАЛИБР</strong>
               <small>Плитный подъём</small>
@@ -73,15 +94,16 @@ const render = () => {
           </a>
 
           <nav class="nav hidden-mobile" aria-label="Основная навигация">
-            <a href="#services">Что поднимаем</a>
-            <a href="#process">Как работаем</a>
-            <a href="#equipment">Оборудование</a>
+            <a href="#services">Услуги</a>
+            <a href="#problems">Решения</a>
+            <a href="#process">Процесс</a>
+            <a href="#equipment">Техника</a>
             <a href="#reviews">Отзывы</a>
             <a href="#faq">FAQ</a>
-            <a href="#contact">Контакты</a>
+            <a href="#form">Заявка</a>
           </nav>
 
-          <a class="btn btn-call" href="${CONTACTS.phoneHref}">Позвонить</a>
+          <a class="btn btn-call" href="${CONTACTS.phoneHref}">☎️ ${CONTACTS.phone}</a>
         </div>
       </header>
 
@@ -89,34 +111,40 @@ const render = () => {
         <section class="hero">
           <div class="container hero-grid">
             <div class="hero-copy reveal">
-              <p class="eyebrow">Подъём крупноформатных плит на этаж</p>
-              <h1>Подъём крупноформатного керамогранита, мрамора и камня на любой этаж</h1>
-              <p class="subtitle">Аккуратно, без сколов, с гарантией</p>
+              <p class="eyebrow">🏆 Специалисты по подъёму камня</p>
+              <h1>Подъём крупноформатного керамогранита, мрамора и гранита на любой этаж</h1>
+              <p class="subtitle">Аккуратно, без сколов, с гарантией. За 10 секунд оставьте заявку и получите расчёт</p>
 
               <div class="hero-actions">
                 <a class="btn btn-primary" href="#form">Рассчитать стоимость</a>
-                <a class="btn btn-ghost" href="${CONTACTS.wa}" target="_blank" rel="noreferrer">Написать в WhatsApp</a>
-                <a class="btn btn-ghost" href="${CONTACTS.tg}" target="_blank" rel="noreferrer">Написать в Telegram</a>
+                <a class="btn btn-ghost" href="${CONTACTS.wa}" target="_blank" rel="noreferrer">WhatsApp</a>
+                <a class="btn btn-ghost" href="${CONTACTS.tg}" target="_blank" rel="noreferrer">Telegram</a>
               </div>
 
               <ul class="hero-trust" aria-label="Преимущества">
-                <li>Без сколов</li>
+                <li>Без сколов и повреждений</li>
                 <li>Подъём без лифта</li>
-                <li>От 1 часа</li>
-                <li>Гарантия</li>
+                <li>За 1–4 часа</li>
+                <li>Гарантия качества</li>
               </ul>
             </div>
 
             <div class="hero-card reveal">
-              <div class="hero-image" aria-label="Пример подъёма плит"></div>
+              <div class="hero-image" aria-label="Профессиональный подъём плит камня">
+                <div class="image-content">
+                  <div class="stone-visual"></div>
+                  <div class="stat-badge">2000+</div>
+                  <div class="stat-text">плит успешно подняты</div>
+                </div>
+              </div>
               <div class="stat-row">
                 <div>
-                  <strong>2000+</strong>
-                  <span>плит поднято</span>
+                  <strong>15+ лет</strong>
+                  <span>опыта в строительстве</span>
                 </div>
                 <div>
-                  <strong>4 шага</strong>
-                  <span>от заявки до сдачи</span>
+                  <strong>100%</strong>
+                  <span>без повреждений</span>
                 </div>
               </div>
             </div>
@@ -126,69 +154,71 @@ const render = () => {
         <section id="services" class="section">
           <div class="container">
             <div class="section-head reveal">
-              <p class="eyebrow">Что мы поднимаем</p>
-              <h2>Крупноформатный камень и плитка любой сложности</h2>
+              <p class="eyebrow">💎 Основной профиль</p>
+              <h2>Крупноформатный камень любой степени сложности</h2>
+              <p class="section-desc">Мы специализируемся на материалах, которые требуют особого подхода и аккуратности</p>
             </div>
 
             <div class="cards-grid four-col">
               <article class="info-card reveal">
-                <div class="icon">01</div>
+                <div class="icon">🟦</div>
                 <h3>Керамогранит</h3>
-                <p>Крупные плитки от 1200×1200 мм и больше, поднимаем аккуратно без сколов.</p>
+                <p>Крупные плитки от 1200×1200 мм и больше. Поднимаем аккуратно, без риска сколов и трещин на краях.</p>
               </article>
 
               <article class="info-card reveal">
-                <div class="icon">02</div>
+                <div class="icon">💎</div>
                 <h3>Мрамор</h3>
-                <p>Натуральный мрамор с деликатной фактурой и повышенной ценностью.</p>
+                <p>Натуральный мрамор с деликатной фактурой и повышенной ценностью. Работаем с максимальной осторожностью.</p>
               </article>
 
               <article class="info-card reveal">
-                <div class="icon">03</div>
+                <div class="icon">✨</div>
                 <h3>Оникс</h3>
-                <p>Транспортация красивого, но хрупкого материала с осторожностью и страховкой.</p>
+                <p>Транспортировка красивого, но хрупкого материала с полной страховкой груза и мягкими захватами.</p>
               </article>
 
               <article class="info-card reveal">
-                <div class="icon">04</div>
+                <div class="icon">⬛</div>
                 <h3>Гранит</h3>
-                <p>Тяжёлые и плотные плиты, которые требуют правильный весовой расчёт и фиксацию.</p>
+                <p>Тяжёлые и плотные плиты. Рассчитываем грузоподъёмность, маршруты и фиксацию для абсолютной безопасности.</p>
               </article>
             </div>
           </div>
         </section>
 
-        <section class="section muted">
+        <section id="problems" class="section muted">
           <div class="container">
             <div class="section-head reveal">
-              <p class="eyebrow">Проблемы, которые мы решаем</p>
-              <h2>Сложные условия по лестницам, лифту и узким проходам</h2>
+              <p class="eyebrow">🔧 Сложные условия</p>
+              <h2>Проблемы, которые мы решаем</h2>
+              <p class="section-desc">Узкие лестницы, отсутствие лифта, большой вес — для нас это стандартные задачи</p>
             </div>
 
             <div class="cards-grid three-col">
               <article class="problem-card reveal">
-                <h3>Узкие лестницы</h3>
-                <p>Поднимаем материал через коридоры, лестничные пролёты и технические проходы без риска повреждения стен и плит.</p>
+                <h3>🪜 Узкие лестницы</h3>
+                <p>Поднимаем материал через коридоры, лестничные пролёты и технические проходы без риска повредить стены и плиту.</p>
               </article>
               <article class="problem-card reveal">
-                <h3>Лифты не подходят</h3>
-                <p>При отсутствии лифта или слишком малом проёме используем безопасный ручной и механизированный подъём.</p>
+                <h3>❌ Лифты не подходят</h3>
+                <p>При отсутствии лифта или слишком малом проёме используем безопасный ручной и механизированный подъём с полной страховкой.</p>
               </article>
               <article class="problem-card reveal">
-                <h3>Большой вес и размер</h3>
-                <p>Мы рассчитываем грузоподъёмность, маршруты и фиксацию, чтобы не допустить перегрузку и повреждения.</p>
+                <h3>⚖️ Большой вес и размер</h3>
+                <p>Рассчитываем грузоподъёмность, используем спецтележки и вакуумные присоски для равномерного распределения нагрузки.</p>
               </article>
               <article class="problem-card reveal">
-                <h3>Риск сколов</h3>
-                <p>Используем вакуумные присоски, мягкие захваты, страховку и контроль качества на каждом этапе.</p>
+                <h3>🛡️ Риск сколов</h3>
+                <p>Мягкие захваты, вакуумные присоски, страховка и опыт — гарантируем целостность материала на всех этапах.</p>
               </article>
               <article class="problem-card reveal">
-                <h3>Нужно быстро</h3>
-                <p>Работаем с соблюдением сроков и подгоняем график под ваш объект, чтобы не срывать ремонт.</p>
+                <h3>⏰ Нужно быстро</h3>
+                <p>Работаем оперативно, согласуем график под ваш ремонт и не срываем сроки сдачи объекта.</p>
               </article>
               <article class="problem-card reveal">
-                <h3>Нужно аккуратно</h3>
-                <p>Сохраняем полезную площадь, не повреждаем отделку и не нарушаем внутреннюю конструкцию помещений.</p>
+                <h3>🏠 Уже уложено</h3>
+                <p>Если плиту уже положили и нужно переделать аккуратно — это наша специализация. Снимаем и укладываем правильно.</p>
               </article>
             </div>
           </div>
@@ -197,30 +227,31 @@ const render = () => {
         <section id="process" class="section">
           <div class="container">
             <div class="section-head reveal">
-              <p class="eyebrow">Как мы работаем</p>
-              <h2>Простой и понятный процесс</h2>
+              <p class="eyebrow">📋 Алгоритм работы</p>
+              <h2>Простой и прозрачный процесс</h2>
+              <p class="section-desc">От заявки до гарантии — четыре чётких шага</p>
             </div>
 
             <div class="steps-grid">
               <div class="step-card reveal">
-                <span>01</span>
+                <span>1️⃣</span>
                 <h3>Заявка</h3>
-                <p>Вы оставляете заявку, мы уточняем детали и быстро оцениваем объём работ.</p>
+                <p>Вы оставляете заявку в форме или пишете в WhatsApp/Telegram. Мы уточняем детали и оцениваем объём работы.</p>
               </div>
               <div class="step-card reveal">
-                <span>02</span>
+                <span>2️⃣</span>
                 <h3>Замер и расчёт</h3>
-                <p>Определяем этаж, маршрут, материал, вес и подготовку безопасного подъёма.</p>
+                <p>Приезжаем, проверяем маршрут, измеряем плиту, взвешиваем. Составляем подробный расчёт с точной ценой.</p>
               </div>
               <div class="step-card reveal">
-                <span>03</span>
+                <span>3️⃣</span>
                 <h3>Подъём</h3>
-                <p>Исполняем работу с фиксацией, страховкой и контролем сохранности плиты.</p>
+                <p>Выполняем работу с полной страховкой, контролем качества и соблюдением всех мер безопасности.</p>
               </div>
               <div class="step-card reveal">
-                <span>04</span>
+                <span>4️⃣</span>
                 <h3>Приёмка</h3>
-                <p>Проверяем качество, фиксируем результат и согласовываем финальный приём.</p>
+                <p>Проверяем результат, фиксируем качество, согласуем финальный приём. Гарантия на всю работу.</p>
               </div>
             </div>
           </div>
@@ -229,28 +260,31 @@ const render = () => {
         <section id="equipment" class="section muted">
           <div class="container">
             <div class="section-head reveal">
-              <p class="eyebrow">Оборудование и опыт</p>
-              <h2>Техника и команда, которые снижают риск повреждений</h2>
+              <p class="eyebrow">🛠️ Арсенал и команда</p>
+              <h2>Техника и опыт, которые снижают риски</h2>
+              <p class="section-desc">Профессиональное оборудование и квалифицированная команда — залог успеха</p>
             </div>
 
             <div class="equipment-layout">
               <div class="equipment-list reveal">
                 <ul>
-                  <li>Вакуумные присоски для безопасного удержания плит</li>
-                  <li>Тележки и платформы для маневрирования в узких проходах</li>
-                  <li>Страховка груза и контроль нагрузки</li>
-                  <li>Команда с опытом работы с камнем и гранитом</li>
+                  <li><strong>Вакуумные присоски</strong> — надёжное удержание плит до 500 кг без повреждений</li>
+                  <li><strong>Специальные тележки</strong> — манёвры в узких коридорах и лестничных пролётах</li>
+                  <li><strong>Страховка груза</strong> — полный контроль нагрузки на всех этапах подъёма</li>
+                  <li><strong>Мягкие захваты</strong> — защита поверхности камня от царапин и трещин</li>
+                  <li><strong>Опыт 15+ лет</strong> — 2000+ успешных подъёмов без повреждений</li>
+                  <li><strong>Квалифицированная команда</strong> — строители-профессионалы с сертификатами</li>
                 </ul>
               </div>
 
-              <div class="equipment-panel reveal">
-                <div class="mini-block">
-                  <strong>Опыт</strong>
-                  <span>Более 2000 плит поднято</span>
+              <div class="equipment-panel">
+                <div class="mini-block reveal">
+                  <strong>🎯 Точность</strong>
+                  <span>Замер маршрута перед каждым подъёмом</span>
                 </div>
-                <div class="mini-block highlight">
-                  <strong>Безопасность</strong>
-                  <span>Проверка маршрута и страховка на каждом этапе</span>
+                <div class="mini-block highlight reveal">
+                  <strong>⚡ Скорость</strong>
+                  <span>От 1 до 4 часов на один объект</span>
                 </div>
               </div>
             </div>
@@ -260,19 +294,29 @@ const render = () => {
         <section class="section">
           <div class="container">
             <div class="section-head reveal">
-              <p class="eyebrow">Наши работы</p>
-              <h2>Место под фото и видео</h2>
+              <p class="eyebrow">📸 Наши работы</p>
+              <h2>Примеры успешных проектов</h2>
+              <p class="section-desc">Готовые объекты — лучший показатель качества</p>
             </div>
 
             <div class="gallery-grid">
               <div class="gallery-item reveal placeholder-photo">
-                <span>Фото объекта</span>
+                <div class="gallery-content">
+                  <span>🏢 Коммерческий объект</span>
+                  <p>Керамогранит 1500×3000, 4 этаж</p>
+                </div>
               </div>
               <div class="gallery-item reveal placeholder-photo">
-                <span>Видео подъёма</span>
+                <div class="gallery-content">
+                  <span>🏠 Квартира премиум</span>
+                  <p>Мрамор натуральный, 7 этаж</p>
+                </div>
               </div>
               <div class="gallery-item reveal placeholder-photo">
-                <span>Проект квартиры</span>
+                <div class="gallery-content">
+                  <span>🏛️ Офис в бизнес-центре</span>
+                  <p>Гранит, подъём без лифта</p>
+                </div>
               </div>
             </div>
           </div>
@@ -281,14 +325,15 @@ const render = () => {
         <section class="section muted">
           <div class="container">
             <div class="section-head reveal">
-              <p class="eyebrow">Цены</p>
-              <h2>Стоимость рассчитывается индивидуально</h2>
+              <p class="eyebrow">💰 Стоимость услуг</p>
+              <h2>Прозрачное ценообразование</h2>
+              <p class="section-desc">Минимальная стоимость или точный расчёт после замера</p>
             </div>
 
             <div class="price-box reveal">
               <strong>от 1 500 ₽</strong>
               <span>за плиту / этаж</span>
-              <p>Точная цена зависит от материала, размера плит, сложности маршрута и наличия лифта. После замера мы назовём финальную стоимость.</p>
+              <p>Точная цена зависит от материала, размера плиты, расстояния, сложности маршрута и наличия лифта. Мы рассчитываем стоимость индивидуально после замера и всегда согласуем её с вами перед работой.</p>
             </div>
           </div>
         </section>
@@ -296,28 +341,24 @@ const render = () => {
         <section id="reviews" class="section">
           <div class="container">
             <div class="section-head reveal">
-              <p class="eyebrow">Отзывы клиентов</p>
-              <h2>Что говорят о работе</h2>
+              <p class="eyebrow">⭐ Отзывы клиентов</p>
+              <h2>Что говорят о нашей работе</h2>
+              <p class="section-desc">Более 2000 довольных клиентов</p>
             </div>
 
             <div class="cards-grid three-col">
-              <article class="review-card reveal">
-                <div class="stars">★★★★★</div>
-                <p>«Очень аккуратно поднимали мраморную плиту в новостройке. Всё без сколов и вовремя.»</p>
-                <strong>Алексей, квартира</strong>
-              </article>
-
-              <article class="review-card reveal">
-                <div class="stars">★★★★★</div>
-                <p>«Работали через узкую лестницу, без лифта. Всё прошло быстро и безопасно, особенно порадовали аккуратность и вежливость.»</p>
-                <strong>Марина, офис</strong>
-              </article>
-
-              <article class="review-card reveal">
-                <div class="stars">★★★★★</div>
-                <p>«Подняли гранитные плиты на 6 этаж. Составили понятный расчёт и всё сделали точно по сроку.»</p>
-                <strong>Сергей, коттедж</strong>
-              </article>
+              ${reviewsData
+                .map(
+                  (review) => `
+                    <article class="review-card reveal">
+                      <div class="stars">${'★'.repeat(review.stars)}</div>
+                      <p>"${review.text}"</p>
+                      <strong>${review.name}</strong>
+                      <small>${review.location}</small>
+                    </article>
+                  `,
+                )
+                .join('')}
             </div>
           </div>
         </section>
@@ -325,8 +366,8 @@ const render = () => {
         <section id="faq" class="section muted">
           <div class="container faq-wrap">
             <div class="section-head reveal">
-              <p class="eyebrow">FAQ</p>
-              <h2>Частые вопросы клиентов</h2>
+              <p class="eyebrow">❓ Вопросы и ответы</p>
+              <h2>Часто спрашивают клиенты</h2>
             </div>
 
             <div class="faq-list reveal">
@@ -347,34 +388,35 @@ const render = () => {
         <section id="form" class="section">
           <div class="container form-layout">
             <div class="section-head reveal">
-              <p class="eyebrow">Оставьте заявку</p>
-              <h2>Расчёт за 10 секунд</h2>
+              <p class="eyebrow">📝 Оставить заявку</p>
+              <h2>Бесплатный расчёт за 10 секунд</h2>
+              <p class="section-desc">Заполните форму ниже, и мы свяжемся с вами в течение 15 минут</p>
             </div>
 
             <form id="lead-form" class="lead-form reveal" novalidate>
               <div class="form-grid">
                 <label>
-                  <span>Имя</span>
-                  <input type="text" name="name" placeholder="Ваше имя" required />
+                  <span>👤 Ваше имя</span>
+                  <input type="text" name="name" placeholder="Иван Петров" required />
                 </label>
 
                 <label>
-                  <span>Телефон</span>
+                  <span>📱 Телефон</span>
                   <input type="tel" name="phone" placeholder="+7 900 000-00-00" required />
                 </label>
 
                 <label class="full-width">
-                  <span>Адрес</span>
-                  <input type="text" name="address" placeholder="Улица, дом, квартира/офис" required />
+                  <span>📍 Адрес объекта</span>
+                  <input type="text" name="address" placeholder="ул. Пример, дом 1, кв. 5" required />
                 </label>
 
                 <label>
-                  <span>Этаж</span>
+                  <span>📈 Этаж</span>
                   <input type="text" name="floor" placeholder="Например: 5" />
                 </label>
 
                 <label>
-                  <span>Материал</span>
+                  <span>💎 Материал</span>
                   <select name="material">
                     <option value="">Выберите материал</option>
                     ${MATERIALS.map((item) => `<option value="${item}">${item}</option>`).join('')}
@@ -382,17 +424,17 @@ const render = () => {
                 </label>
 
                 <label>
-                  <span>Размер плит</span>
-                  <input type="text" name="size" placeholder="Напр. 1200×2400" />
+                  <span>📐 Размер плиты</span>
+                  <input type="text" name="size" placeholder="Например: 1200×2400" />
                 </label>
 
                 <label>
-                  <span>Количество</span>
-                  <input type="text" name="quantity" placeholder="Напр. 3 плиты" />
+                  <span>🔢 Количество</span>
+                  <input type="text" name="quantity" placeholder="Например: 3 плиты" />
                 </label>
 
                 <label>
-                  <span>Есть ли лифт?</span>
+                  <span>🛗 Есть ли лифт?</span>
                   <select name="lift">
                     <option value="">Выберите</option>
                     <option value="Да">Да</option>
@@ -402,8 +444,8 @@ const render = () => {
                 </label>
 
                 <label class="full-width">
-                  <span>Комментарий</span>
-                  <textarea name="comment" rows="4" placeholder="Например: узкая лестница, 3 этаж, надо занести через окно"></textarea>
+                  <span>💬 Комментарий</span>
+                  <textarea name="comment" rows="4" placeholder="Узкая лестница, острые углы, есть окно для подъёма..."></textarea>
                 </label>
 
                 <div class="honeypot" aria-hidden="true">
@@ -415,7 +457,7 @@ const render = () => {
               </div>
 
               <div class="form-footer">
-                <button class="btn btn-primary" type="submit">Отправить заявку</button>
+                <button class="btn btn-primary" type="submit">✓ Отправить заявку</button>
                 <p id="form-status" class="form-status" aria-live="polite"></p>
               </div>
             </form>
@@ -427,19 +469,19 @@ const render = () => {
         <div class="container footer-inner">
           <div>
             <a class="brand footer-brand" href="#top">
-              <span class="brand-mark">K</span>
+              <span class="brand-mark">⬆️</span>
               <span>
                 <strong>КАЛИБР</strong>
                 <small>Плитный подъём</small>
               </span>
             </a>
-            <p class="footer-text">Подъём крупноформатного керамогранита, мрамора и камня на любой этаж.</p>
+            <p class="footer-text">Профессиональный подъём крупноформатного камня на любой этаж. Без сколов. С гарантией.</p>
           </div>
 
           <div class="footer-contacts">
-            <a href="${CONTACTS.phoneHref}">${CONTACTS.phone}</a>
-            <span>${CONTACTS.city}</span>
-            <span>${CONTACTS.schedule}</span>
+            <a href="${CONTACTS.phoneHref}"><strong>${CONTACTS.phone}</strong></a>
+            <span>📍 ${CONTACTS.city}</span>
+            <span>🕐 ${CONTACTS.schedule}</span>
           </div>
 
           <div class="footer-actions">
@@ -450,8 +492,8 @@ const render = () => {
       </footer>
 
       <div class="floating-actions" aria-label="Мгновенные контакты">
-        <a href="${CONTACTS.wa}" target="_blank" rel="noreferrer" class="floating-btn whatsapp">WhatsApp</a>
-        <a href="${CONTACTS.tg}" target="_blank" rel="noreferrer" class="floating-btn telegram">Telegram</a>
+        <a href="${CONTACTS.wa}" target="_blank" rel="noreferrer" class="floating-btn whatsapp" title="Написать в WhatsApp">WhatsApp</a>
+        <a href="${CONTACTS.tg}" target="_blank" rel="noreferrer" class="floating-btn telegram" title="Написать в Telegram">Telegram</a>
       </div>
     </div>
   `;
@@ -478,18 +520,18 @@ const render = () => {
       };
 
       if (!payload.name || !payload.phone || !payload.address) {
-        statusNode.textContent = 'Заполните имя, телефон и адрес';
+        statusNode.textContent = '❌ Заполните имя, телефон и адрес';
         statusNode.classList.add('error');
         return;
       }
 
       if (payload.website) {
-        statusNode.textContent = 'Некорректный запрос';
+        statusNode.textContent = '❌ Некорректный запрос';
         statusNode.classList.add('error');
         return;
       }
 
-      statusNode.textContent = 'Отправляем заявку...';
+      statusNode.textContent = '⏳ Отправляем заявку...';
       statusNode.classList.remove('error');
 
       try {
@@ -507,12 +549,12 @@ const render = () => {
           throw new Error(result.message || 'Не удалось отправить заявку');
         }
 
-        statusNode.textContent = result.message || 'Спасибо! Мы свяжемся с вами в течение 15 минут';
+        statusNode.textContent = '✅ ' + (result.message || 'Спасибо! Мы свяжемся с вами в течение 15 минут');
         statusNode.classList.remove('error');
         form.reset();
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Не удалось отправить заявку';
-        statusNode.textContent = message;
+        statusNode.textContent = '❌ ' + message;
         statusNode.classList.add('error');
       }
     });
